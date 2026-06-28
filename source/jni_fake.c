@@ -301,6 +301,9 @@ static void *call_object(void *recv, const char *name, va_list va) {
   if (!strcmp(name, "getAssets"))        return &g_assetmgr;
   if (!strcmp(name, "getDisplayDPI"))    return make_object(K_DISPLAYMETRICS);
   if (!strcmp(name, "clipboardGetText")) return jni_make_string("");
+  // Environment.getExternalStorageState(): SDL needs "mounted" to report the
+  // storage as writable, otherwise the engine refuses to save ("not enough space").
+  if (!strcmp(name, "getExternalStorageState")) return jni_make_string("mounted");
   // Context dirs
   if (!strcmp(name, "getFilesDir"))         return make_file(config.save_root);
   if (!strcmp(name, "getCacheDir"))         return make_file(config.save_root);

@@ -26,6 +26,7 @@ typedef struct {
   int screen_width;   // -1 = auto
   int screen_height;
   int language;
+  int swap_ab;        // 0 = A confirms/jumps (Nintendo, default); 1 = B does (PlayStation)
   char data_root[256];
   char save_root[256];
 } Config;

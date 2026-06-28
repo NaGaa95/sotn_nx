@@ -30,6 +30,10 @@ This will not work in applet/album mode. Use a game override (hold R on a title)
 
 Save games and settings are stored in `/switch/sotn/save/`.
 
+A `config.txt`  
+`screen_width`/`screen_height`
+`swap_ab` (`1` puts confirm/jump on B for a PlayStation layout).
+
 ### How to build
 
 You're going to need devkitA64 and the following packages/libraries:

@@ -171,7 +171,8 @@ static void register_vjoy(void) {
 
 static PadState pad;
 
-static const struct { u64 sw; int key; } s_btnmap[] = {
+// entries 0/1 are A/B; swap_ab swaps their keycodes at startup
+static struct { u64 sw; int key; } s_btnmap[] = {
   { HidNpadButton_A,      AKEYCODE_BUTTON_A },   // Nintendo A (east)  -> confirm
   { HidNpadButton_B,      AKEYCODE_BUTTON_B },   // Nintendo B (south) -> cancel
   { HidNpadButton_Y,      AKEYCODE_BUTTON_X },
@@ -263,9 +264,17 @@ int main(void) {
   if (read_config(CONFIG_NAME) != 0)
     write_config(CONFIG_NAME);
 
+  if (config.swap_ab) { // PlayStation layout: confirm/jump on B (south)
+    s_btnmap[0].key = AKEYCODE_BUTTON_B;
+    s_btnmap[1].key = AKEYCODE_BUTTON_A;
+  }
+
   check_syscalls();
   check_data();
   mkdir(config.save_root, 0777);
+  char snap[300]; // the engine saves to <data_root>/snapshots/
+  snprintf(snap, sizeof(snap), "%s/snapshots", config.data_root);
+  mkdir(snap, 0777);
   set_screen_size(config.screen_width, config.screen_height);
 
   setenv("SDL_ACCELEROMETER_AS_JOYSTICK", "0", 1);

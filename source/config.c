@@ -19,7 +19,8 @@
 #define CONFIG_VARS \
   CONFIG_VAR_INT(screen_width); \
   CONFIG_VAR_INT(screen_height); \
-  CONFIG_VAR_INT(language);
+  CONFIG_VAR_INT(language); \
+  CONFIG_VAR_INT(swap_ab);
 
 Config config;
 
