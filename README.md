@@ -1,6 +1,6 @@
 <div align=center>
 
-<img src="extras/banner.png" alt="Banner" width="50%">
+<img src="extras/banner.png" alt="Banner" width="30%">
 
 </div>
 <h1 align=center>Castlevania: Symphony of the Night - Nintendo Switch port</h1>
