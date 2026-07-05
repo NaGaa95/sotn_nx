@@ -85,3 +85,13 @@ void cpu_boost(int on) {
 int ret0(void) { return 0; }
 
 int retm1(void) { return -1; }
+
+// Override libnx's exit teardown to skip the SD unmount: the engine's threads
+// are still reading the card, so commit saves and leave it mounted.
+void __appExit(void) {
+  fsdevCommitDevice("sdmc");
+  timeExit();
+  hidExit();
+  appletExit();
+  smExit();
+}

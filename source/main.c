@@ -337,12 +337,8 @@ int main(void) {
     svcSleepThread(4 * 1000 * 1000);
   }
 
-  threadWaitForExit(&s_game_thread);
-  threadClose(&s_game_thread);
-
-  sdl_audio_shutdown();
-  SDL_Quit();
-
+  // Exit through libnx (see __appExit in util.c); the engine's threads are still
+  // running, so skip the graceful SDL/thread teardown.
   extern void NX_NORETURN __libnx_exit(int rc);
   __libnx_exit(0);
   return 0;
