@@ -3,6 +3,7 @@
 
 #define SDL_MAIN_HANDLED
 
+#include "saltynx.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -259,6 +260,8 @@ static void game_thread_fn(void *arg) {
 }
 
 int main(void) {
+  saltynx_start();
+  atexit(saltynx_stop);
   cpu_boost(1);
 
   if (read_config(CONFIG_NAME) != 0)

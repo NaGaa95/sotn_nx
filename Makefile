@@ -44,6 +44,9 @@ LDFLAGS	=	-specs=$(DEVKITPRO)/libnx/switch.specs -g $(ARCH) \
 # for the engine's rendering (resolved through our import table + dlopen shim),
 # and zlib for the engine's inflate/deflate imports. The engine bundles its own
 # Ogg/Vorbis/Theora decoders, so no media codecs are needed here.
+# Publish all EGL presentation paths, including guest import tables.
+LDFLAGS += -Wl,--wrap=eglSwapBuffers,--wrap=eglGetProcAddress,--wrap=__libnx_exit
+
 LIBS	:= -lSDL2 -lGLESv1_CM -lGLESv2 -lEGL -lglapi -ldrm_nouveau \
 			-lz -lnx -lm
 
