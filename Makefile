@@ -13,7 +13,7 @@ include $(DEVKITPRO)/libnx/switch_rules
 TARGET		:=	sotn
 APP_TITLE	:=	Castlevania: Symphony of the Night
 APP_AUTHOR	:=	naga
-APP_VERSION	:=	1.0.2
+APP_VERSION	:=	1.0.3
 BUILD		:=	build
 SOURCES		:=	source
 DATA		:=	data
